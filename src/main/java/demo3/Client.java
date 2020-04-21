@@ -1,6 +1,7 @@
 package demo3;
 
 import demo3.dao.IUserDao;
+import demo3.dto.User;
 import demo3.service.IUserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -24,6 +25,16 @@ public class Client {
      *  2.第二种获取方式，使用factoryBean的方式获取
      *
      *  3.第二种获取方式，使用factoryBean的静态方法方式获取
+     *
+     * SpringBean对象的生命周期
+     *  单例对象：
+     *      出生：spring容器创建时，对象创建
+     *      活着：spring容器存在时，对象一直存在
+     *      死亡：spring容器销毁时，对象销毁
+     *  多例对象：
+     *      出生：当我们使用对象时，Spring框架为我们创建
+     *      活着：对象只要在使用过程中，就一直存活
+     *      死亡：当对象长时间不使用时，java的回收器将其回收
      * @param args
      */
 
@@ -31,15 +42,20 @@ public class Client {
     public static void main(String[] args) {
 
 
+//        ApplicationContext ctx = new ClassPathXmlApplicationContext("bean.xml");
         ApplicationContext ctx = new ClassPathXmlApplicationContext("bean.xml");
 
-        IUserDao userDao = (IUserDao) ctx.getBean("userDao");
+//        IUserDao userDao = (IUserDao) ctx.getBean("userDao");
+//
+//        IUserService userService = ctx.getBean("userService", IUserService.class);
+//
+//        System.out.println(userDao);
+//        System.out.println(userService);
 
-        IUserService userService = ctx.getBean("userService", IUserService.class);
+//        ctx.close();
 
-        System.out.println(userDao);
-        System.out.println(userService);
-
+        User user = (User) ctx.getBean("user");
+        System.out.println(user.toString());
     }
 
 }

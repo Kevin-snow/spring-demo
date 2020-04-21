@@ -4,8 +4,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="userDao" class="demo3.dao.impl.UserDaoImpl"></bean>
+    <bean id="userDao" class="demo3.dao.impl.UserDaoImpl" />
+    <bean id="userService" class="demo3.service.impl.UserService"
+        init-method="init" destroy-method="destroy"/>
 
-    <bean id="userService" class="demo3.service.impl.UserSerivce"></bean>
+    <!-- 构造函数的配置方式-->
+    <bean id="user" class="demo3.dto.User">
+        <constructor-arg name="age" value="18"/>
+        <constructor-arg name="name" value="张三"/>
+        <constructor-arg name="nikeName" value="小花猫"/>
+        <constructor-arg name="birthday" ref="time"/>
+    </bean>
 
+    <!-- 外部Bean-->
+    <bean id="time" class="java.util.Date" />
 </beans>
