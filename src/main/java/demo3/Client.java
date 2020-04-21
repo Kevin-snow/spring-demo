@@ -55,6 +55,7 @@ public class Client {
 //        ctx.close();
 
         User user = (User) ctx.getBean("user");
+        user.printCollect();
         System.out.println(user.toString());
     }
 
