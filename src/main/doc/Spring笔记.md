@@ -109,3 +109,20 @@ BeanFactory, 创建对象采取的策略是延迟加载的方式。也就是说�
   <bean id="time" class="java.util.Date" />
   ```
 
+***set方法注入：***
+
+- 在使用set方法注入时，在<bean>标签里，加入<property>标签。
+- <property>标签的属性：
+- name：表示注入时，用于调用set方法的名
+- value: 用于提供基本类型和String类型的赋值
+- ref: 用于引用外部对象，非基本类型时使用
+
+***注入集合数据：***
+
+- 当注入List结构的集合数据时以下的标签都可以使用：
+
+​	list、arrays、set
+
+- 当注入Map结构的集合数据时可以使用如下标签：
+
+​	map、props
