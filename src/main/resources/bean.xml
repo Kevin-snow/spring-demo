@@ -1,54 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-
-    <bean id="userDao" class="demo3.dao.impl.UserDaoImpl" />
-    <bean id="userService" class="demo3.service.impl.UserService"
-        init-method="init" destroy-method="destroy"/>
-
-    <!-- 构造函数的配置方式
-    <bean id="user" class="demo3.dto.User">
-        <constructor-arg name="age" value="18"/>
-        <constructor-arg name="name" value="张三"/>
-        <constructor-arg name="nikeName" value="小花猫"/>
-        <constructor-arg name="birthday" ref="time"/>
-    </bean>-->
-
-    <!-- 外部Bean-->
-    <bean id="time" class="java.util.Date" />
-
-    <!--<bean id="user" class="demo3.dto.User">
-        <property name="name" value="赵四" />
-        <property name="nikeName" value="尼古拉斯" />
-        <property name="age" value="29"/>
-        <property name="birthday" ref="time"/>
-    </bean>-->
-
-    <bean id="user" class="demo3.dto.User">
-        <property name="ages">
-            <set>
-                <value>11</value>
-                <value>22</value>
-                <value>33</value>
-                <value>44</value>
-            </set>
-        </property>
-        <property name="names">
-            <list>
-                <value>11</value>
-                <value>22</value>
-                <value>33</value>
-                <value>44</value>
-            </list>
-        </property>
-        <property name="map">
-            <map>
-                <entry key="a" value="1" />
-                <entry key="b" value="2" />
-                <entry key="c" value="3" />
-            </map>
-        </property>
-    </bean>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="demo4"/>
 </beans>
