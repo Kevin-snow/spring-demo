@@ -14,7 +14,7 @@
 
 **当我们使用注解的方式进行依赖注入时，需要使用带有<context:component-scan base-backage="demo4"/>的标签进行配置。base-backage表示要扫描的包路径**。
 
-### 用于创建对象的注解
+#### 用于创建对象的注解
 
 ***@Component***
 
@@ -25,7 +25,7 @@
 
 以上三个注解与@Component的作用是一模一样的。它们是Spring为我们提供的基于三层使用的注解。使我们对三层的对象更加清晰。
 
-### 用于注入对象数据的注解
+#### 用于注入对象数据的注解
 
 ***@Autowired***
 
@@ -69,7 +69,7 @@ public void prite(){
 
 ​		SpEL的写法（${表达式}）
 
-### 用于改变作用范围的注解
+#### 用于改变作用范围的注解
 
 ***@Scope***
 
@@ -77,7 +77,7 @@ public void prite(){
 
 ​	属性：value，指定范围的取值，常用的为singleton，prototype
 
-### 和生命周期相关
+#### 和生命周期相关
 
 @PostContruct
 
@@ -86,3 +86,53 @@ public void prite(){
 @PreDestroy
 
 ​	作用：用于销毁方法
+
+
+
+
+
+### *Spring中的新注解，下边几个注解的可以替换Bean.xml*
+
+***@Configuration***
+
+​		作用：指定当前类是一个配置类，它和bean.xml是一样的
+
+​		细节：当配置类作为AnnotationConfigApplicationContext对象创建的参数时，此注解可以不写（有时不会出错，有时会出错）
+
+***@ComponentScan***
+
+​		前提：ComponentScan注解在扫描时，必须认为该类是配置类，换句话说，必须是@Configuration修饰的类，或者是被当作AnnotationConfigApplicationContext对象创建的参数。
+
+​		作用：用于通过注解指定Spring要扫描的包
+
+​		属性：value，它和basePackages的作用是一样的，都是告诉Spring在创建容器时要扫描的包
+
+​		我们使用此注解就等同于xml里的
+
+​		<context:component-scan base-package="cn.kevin" />
+
+***@Bean***
+
+​		作用：用于把当前方法的返回值当成Bean对象存入SpringIoc容器
+
+​		属性：name，用于指定bean的id，如果不写时，默认为方法名字
+
+***@Import***
+
+​		作用：用于导入其他的配置类
+
+​		属性：value，用于指定其他配置类的字节码，也就是类.class
+
+​		当我们使用Import注解之后，有Import注解的类就是父配置类，也叫主配置类，而导入的都是子配置类。
+
+***@Value***
+
+​		作用：获取properties文件的配置项值
+
+***@PropertySource***
+
+​		作用：用于指定properties文件的位置
+
+​		属性：value，指定文件的路径和名字
+
+​		关键字，classpath表示类路径
